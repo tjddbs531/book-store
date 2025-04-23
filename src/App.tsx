@@ -12,29 +12,34 @@ import Signup from "./pages/Signup";
 import ResetPassword from "./pages/ResetPassword";
 import Login from "./pages/Login";
 import Books from "./pages/Books";
+import BookDetail from "./pages/BookDetail";
 
 const router = createBrowserRouter([
   {
     path: "/",
-    element: <Layout><Home/></Layout>,
+    element: (<Layout><Home/></Layout>),
     errorElement: <Error />,
   },
   {
     path: "/books",
-    element: <Layout><Books /></Layout>,
+    element:( <Layout><Books /></Layout>),
   },
   {
     path: "/signup",
-    element: <Layout><Signup /></Layout>,
+    element: (<Layout><Signup /></Layout>),
   },
   {
     path: "/reset",
-    element: <Layout><ResetPassword /></Layout>,
+    element: (<Layout><ResetPassword /></Layout>),
   },
   {
     path: "/Login",
-    element: <Layout><Login /></Layout>,
-  }
+    element: (<Layout><Login /></Layout>),
+  },
+  {
+    path: "/book/:bookId",
+    element: (<Layout><BookDetail /></Layout>),
+  },
 ]);
 
 function App() {

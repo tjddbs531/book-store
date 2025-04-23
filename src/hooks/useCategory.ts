@@ -15,11 +15,11 @@ export const useCategory = () => {
       const selectedId = params.get('category_id');
 
       const categoryWithAll = [
-        { id: null, name: '전체' },
+        { category_id: null, category_name: '전체' },
         ...data,
       ].map((item) => ({
         ...item,
-        isActive: selectedId ? item.id === Number(selectedId) : false,
+        isActive: selectedId ? item.category_id === Number(selectedId) : false,
       }));
 
       setCategory(categoryWithAll);

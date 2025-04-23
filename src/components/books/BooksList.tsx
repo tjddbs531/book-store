@@ -23,7 +23,7 @@ function BooksList({books} : Props) {
     return (
         <BooksListStyle view={view}>
             {books?.map((item) => (
-            <BookItem key={item.id} book={item} />
+            <BookItem key={item.id} book={item} view = {view}/>
             ))}
         </BooksListStyle>
     )
@@ -35,7 +35,7 @@ interface BooksListStyleProps {
 
 const BooksListStyle = styled.div<BooksListStyleProps>`
     display: grid;
-    grid-template-columns: repeat(4, 1fr);
+    grid-template-columns:${({ view }) => (view === 'grid' ? "repeat(4,1fr)" : "repeat(1, 1fr")};
     gap: 24px;
     `;
 
