@@ -1,3 +1,5 @@
-export const fromatNumber = (number : number): string => {
-    return number.toLocaleString();
-}
+// utils/format.ts
+export const formatNumber = (number: number): string => {
+    return number.toLocaleString() + "원";
+  };
+  

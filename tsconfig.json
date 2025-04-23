@@ -22,5 +22,23 @@
   },
   "include": [
     "src"
-  ]
+  ],
+  
+    "React Component (_comp)": {
+      "prefix": "_comp",
+      "body": [
+        "import React from 'react';",
+        "",
+        "function $1() {",
+        "  return (",
+        "    <div>",
+        "      <h1>$1</h1>",
+        "    </div>",
+        "  );",
+        "}",
+        "",
+        "export default $1;"
+      ],
+      "description": "React 기본 함수형 컴포넌트 스니펫"
+    }
 }

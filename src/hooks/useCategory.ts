@@ -1,26 +1,30 @@
 import { useEffect, useState } from "react";
 import { fetchCategory } from "../api/category.api";
 import { Category } from "../models/category.model";
+import { useLocation } from "react-router-dom";
 
 export const useCategory = () => {
-    const [category, setCategory] = useState<Category[]>
-      ([]);
-    
-      useEffect(() => {
-        fetchCategory().then((category) => {
+  const location = useLocation();
+  const [category, setCategory] = useState<Category[]>([]);
 
-        if (!category) return;
-        
-        const categoryWithAll = [
-            {
-                id: null,
-                name : '전체',
-            },
-            ...category,
-        ]
-          setCategory(categoryWithAll);
-        });
-      }, []); 
+  useEffect(() => {
+    fetchCategory().then((data) => {
+      if (!data) return;
 
-      return { category };
-}
+      const params = new URLSearchParams(location.search);
+      const selectedId = params.get('category_id');
+
+      const categoryWithAll = [
+        { id: null, name: '전체' },
+        ...data,
+      ].map((item) => ({
+        ...item,
+        isActive: selectedId ? item.id === Number(selectedId) : false,
+      }));
+
+      setCategory(categoryWithAll);
+    });
+  }, [location.search]);
+
+  return { category };
+};
