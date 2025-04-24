@@ -15,7 +15,7 @@ export interface SignupProps {
 
 function Signup() {
     const navigate = useNavigate();
-    const showAlrt = useAlert();
+    const {showAlert} = useAlert();
     // const [email, setEmail] = useState("");
     // const [password, setPassword] = useState("");
 
@@ -31,7 +31,7 @@ function Signup() {
 
     const onSubmit = (data: SignupProps) => {
        signup(data).then((res) => {
-        showAlrt('회원가입이 완료되었습니다');
+        showAlert('회원가입이 완료되었습니다');
         navigate("/login");
        })
     };

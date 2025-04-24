@@ -16,8 +16,8 @@ export interface SignupProps {
 
 function ResetPassword() {
     const navigate = useNavigate();
-    const showAlert = useAlert(); // ✅ 오타 수정
-    const [resetRequested, setResetRequested] = useState(false); // ✅ setter 함수
+    const {showAlert} = useAlert(); 
+    const [resetRequested, setResetRequested] = useState(false); 
 
     const {
         register,
