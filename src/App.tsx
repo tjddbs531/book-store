@@ -16,54 +16,38 @@ import BookDetail from "./pages/BookDetail";
 import Cart from "./pages/Cart";
 import Order from "./pages/Order";
 import OrderList from "./pages/OrderList";
+import { QueryClientProvider } from "react-query";
+import { queryClient } from "./api/queryClient";
 
-const router = createBrowserRouter([
-  {
-    path: "/",
-    element: (<Layout><Home/></Layout>),
-    errorElement: <Error />,
-  },
-  {
-    path: "/books",
-    element:( <Layout><Books /></Layout>),
-  },
-  {
-    path: "/signup",
-    element: (<Layout><Signup /></Layout>),
-  },
-  {
-    path: "/reset",
-    element: (<Layout><ResetPassword /></Layout>),
-  },
-  {
-    path: "/Login",
-    element: (<Layout><Login /></Layout>),
-  },
-  {
-    path: "/book/:bookId",
-    element: (<Layout><BookDetail /></Layout>),
-  },
-  {
-    path: "/cart",
-    element: (<Layout><Cart /></Layout>),
-  },
-  {
-    path: "/order",
-    element: (<Layout><Order /></Layout>),
-  },
-  {
-    path: "/orderlist",
-    element: (<Layout><OrderList /></Layout>),
-  },
-]);
+const routeList = [
+  {path: "/",element:<Home/>,},
+  {path: "/books",element:<Books />},
+  {path: "/signup",element: <Signup />},
+  {path: "/reset",element: <ResetPassword />},
+  {path: "/Login",element: <Login />},
+  {path: "/book/:bookId",element:<BookDetail />},
+  {path: "/cart",element: <Cart />},
+  {path: "/order",element:<Order />},
+  {path: "/orderlist", element: <OrderList />},
+];
+
+const router = createBrowserRouter(routeList.map((item) => {
+  return {
+    ...item,
+    element: <Layout>{item.element}</Layout>,
+    errorElement: <Error />
+  }
+}));
 
 function App() {
 
   return (
+    <QueryClientProvider client={queryClient}>
     <BookStoreThemeProvider>
       <ThemeSwitcher />
         <RouterProvider router ={router} />     
     </BookStoreThemeProvider>
+    </QueryClientProvider>
   );
 }
 
